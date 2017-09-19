@@ -1,0 +1,117 @@
+$modal-header-height:56px;
+$modal-footer-height:56px;
+$modal-padding:20px;
+
+$modal-header-background:#eee;
+$modal-divider-color:#ccc;
+$modal-backdrop-background:rgba(0,0,0,0.5);
+
+.ibs-backdrop{
+  position: fixed;
+  top:0;
+  left:0;
+  width: 100%;
+  min-height: 768px;
+  height: 100%;
+  background-color:$modal-backdrop-background;
+  z-index: 100;
+  display: none;
+}
+
+.ibs-full-modal-container{
+  @extend .ibs-backdrop;
+  background-color: transparent;
+}
+
+.ibs-full-modal{
+  position: absolute;
+  top:0;
+  left:240px;
+  right:0;
+  bottom:0;
+  transform: translateX(30%);
+  opacity:0;
+  
+  *{
+    box-sizing: border-box;
+    margin:0;
+    padding:0;
+  }
+  
+  &>.ibs-modal-header{
+    padding:$modal-padding/4*3 $modal-padding;
+    position: absolute;
+    top:0;
+    left:0;
+    width: 100%;
+    height: $modal-header-height;
+    background-color: $modal-header-background;
+    border-bottom: 1px solid $modal-divider-color;
+  }
+  
+  
+  &>.ibs-modal-body{
+    @extend .ibs-modal-header;
+    height: auto;
+    padding:$modal-padding;
+    right:0;
+    bottom:0;
+    background-color: #fff;
+    overflow-x: hidden;
+    overflow-y: auto;
+    border:none;
+    &.has-header{
+      top:$modal-header-height;
+    }
+    &.has-footer{
+      bottom:$modal-footer-height;
+    }
+  }
+  
+  &>.ibs-modal-footer{
+    @extend .ibs-modal-header;
+    top:auto;
+    bottom:0;
+    height: $modal-footer-height;
+    text-align: right;
+    border-top: 1px solid $modal-divider-color;
+    padding:$modal-padding/2 $modal-padding;
+  }
+  
+  .ibs-modal-title{
+    padding:5px 0;
+    font-size: 18px;
+    font-weight: bold;
+    float: left;
+  }
+  .ibs-btn-close{
+    font-size:30px;
+    float:right;
+    line-height: 30px;
+    text-align: center;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    transition: all 0.3s;
+    &:hover{
+      background-color: cornflowerblue;
+      color:#fff;
+      cursor: pointer;
+      transform: rotate(180deg);
+    }
+  }
+}
+
+
+html{
+  height: 100%;
+}
+
+body{
+  min-height: 100%;
+  transform: translate3d(0,0,0);
+}
+
+body.full-modal-open{
+  overflow: hidden;
+}
