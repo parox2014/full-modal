@@ -14,36 +14,12 @@
       <h4 class="ibs-modal-title">内容编辑</h4>
       <span class="ibs-btn-close">&times;</span>
     </header>
-    <div class="ibs-modal-body has-header">
-      <div>
-        <button id="modal2Btn" class="btn btn-success">open modal2</button>
-      </div>
-      <div class="item-wrap" style="font-size: 18px;line-height: 2em">
-        <div class="article" id="">
-          <div class="article-title"><h2>又一日本间谍九一八纪念日在华被捕 或涉嫌中国航母情报</h2></div>
-          <div class="article-source"><span class="source">搜狐新闻</span> <span class="date">09-19</span> <span
-            class="time">06:20</span></div>
-          <div class="article-content"><p>　　【环球时报驻日本特约记者 蓝雅歌 环球时报记者 邢晓婧
-            王逸】昨天是“九一八”事变爆发86周年纪念日，除了关注中国各界的纪念活动外，日本媒体尤其关注《大连日报》18日的一则消息：因涉嫌从事对华间谍情报活动被大连市国家安全局审查的日籍人员樋口健，将于2017年9月18日被检察机关批准逮捕。中国外交部18日也证实了这一消息。该人因从事何种“间谍情报活动”被批捕尚不可知，但日本时事通讯社18日提到，大连是一座军港城市，今年4月中国首艘国产航母在这里下水。被捕的日本人“可能涉嫌与此相关的军事情报被当做间谍”。</p>
-            <p>
-              中国外交部发言人陆慷18日回答记者提问时表示，中方有关部门依法对涉嫌从事危害中国国家安全行为的日本公民进行审查，并根据《中日领事协定》及时通报了日本驻华相关领事机构。《环球时报》记者18日就此询问日本驻沈阳总领事馆常驻大连领事办公室，对方表示已关注到，但此事隶属(日本)外务省海外日本人安全科管辖，因此不便给予回应。《环球时报》记者随后联系到日本外务省，对方表示，“已掌握相关信息，但现阶段对外没有回应”。共同社称，大连市在5月拘留一名60多岁的日本男子，此次报道中涉及的有可能是这名男子。</p>
-            <p>
-              据共同社18日报道，自2015年以来，因从事间谍活动等嫌疑被中国拘留的至少有12名日本人。其中6人今年3月以“考察温泉资源”名义，分别深入中国山东蓬莱和海南三亚五指山地区，实施非法勘测活动，被中方拘捕。报道称，据了解，其中4人今年7月被释放已回到日本，剩余8人还处于拘留状态，其中5人已被中方起诉。</p>
-            <p>
-              9月18日上午，辽宁各界在沈阳“九一八”历史博物馆举行撞钟鸣警仪式，纪念“九一八”事变爆发86周年。日本时事通讯社称，约1000人出席沈阳“九一八”历史博物馆的纪念仪式，人数与2016年差不多。报道称，从今年开始，中国官方把抗日战争的起始点从1937年的卢沟桥事变改到1931年的“柳条湖事件”(即“九一八”事变)，中国各学校的教科书中也做出相应修改。日本媒体《中日新闻》17日刊发社论称，昭和战争从86年前的9月18日开始。日本军队尝到了“满洲事变”的成功味道，政府和军队部分高官制造“攻陷邻国”舆论，甚至不惜制造“满洲事变”阴谋发动战争，这样的历史不应该被忘记。</p>
-            <p>另据俄媒报道，中国海军舰艇编队已经驶抵俄符拉迪沃斯托克，中俄“海上联合－2017”第二阶段演习将于9月18日至26日在俄太平洋舰队基地举行。演习将涉及日本海及鄂霍次克海南部海域。</p>
-            <p>作者：蓝雅歌 邢晓婧返回搜狐，查看更多</p></div>
-          <div class="read-src" data-showlog="tid:132;cst:1;logInfo:readsrc;"
-               data-extralog="rid:;pos:;extra:;isBaijiahao:0;login:1;" data-rid="readsrc"><a
-            href="http://www.sohu.com/a/192918080_162522" target="_blank" data-clklog="tid:137;cst:2;logInfo:readsrc;"
-            data-extralog="rid:;pos:;extra:;isBaijiahao:0;login:1;">查看原文 &gt;&gt;</a></div>
-          <div class="notice"><p>产品建议及投诉请联系：shoujibaidu@baidu.com</p></div>
-        </div>
-      </div>
-      <div class="text-right">
-        <button class="btn btn-default" id="closeBtn">取消</button>
-        <button class="btn btn-success">确定</button>
-      </div>
+    <div class="ibs-modal-body has-header has-footer">
+    
+    </div>
+    <div class="ibs-modal-footer text-right">
+      <button class="btn btn-default" id="closeBtn">取消</button>
+      <button class="btn btn-success">确定</button>
     </div>
   </div>
 </div>
@@ -78,7 +54,7 @@
         </div>
       </div>
       <div class="text-right">
-        <button class="btn btn-default" id="closeBtn">取消</button>
+        <button class="btn btn-default" id="">取消</button>
         <button class="btn btn-success">确定</button>
       </div>
     </div>
@@ -89,7 +65,7 @@
 <script>
   window.addEventListener('load', function () {
     $('.ibs-full-modal-container').fullModal({
-      closeWhenClickBackdrop: false,
+      closeWhenClickBackdrop: true,
       duration:500,
       beforeOpen: function () {
         console.log('beforeOpen was invoked');
