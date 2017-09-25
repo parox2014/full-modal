@@ -38,6 +38,7 @@
    $('.ibs-full-modal-container').fullModal({
       closeWhenClickBackdrop: true,
       duration:500,
+      trigger:'',
       beforeOpen: function () {
         console.log('beforeOpen was invoked');
       },
@@ -64,9 +65,10 @@
 ```
 ## API说明
 
-1. `closeWhenClickBackdrop`:`boolean`，点击遮罩层时，是否关闭对话框,默认：`true`
-2. `duration`:`number`,动画持续时间,默认:`300`.
-3. `beforeOpen`:`Function`,对话框打开之前调用.
-4. `afterOpen`:`Function`,对话框架打之后调用.
-5. `beforeClose`:`Function`,对话框关闭之前调用.
-6. `afterClose` :`Function`,对话框关闭之后调用.
+1. `closeWhenClickBackdrop`:`boolean`，点击遮罩层时，是否关闭对话框,默认：`true`,optional.
+2. `trigger`: `string`,按钮的选择器，点击此按钮会打开对话框,如`#my-button`,optional.
+2. `duration`:`number`,动画持续时间,默认:`300`,optional.
+3. `beforeOpen`:`Function`,对话框打开之前调用,optional.
+4. `afterOpen`:`Function`,对话框架打之后调用,optional.
+5. `beforeClose`:`Function`,对话框关闭之前调用,optional.
+6. `afterClose` :`Function`,对话框关闭之后调用,optional.
