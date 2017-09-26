@@ -23,6 +23,12 @@ $modal-backdrop-background:rgba(0,0,0,0.5);
   background-color: transparent;
 }
 
+*{
+  box-sizing: border-box;
+  margin:0;
+  padding:0;
+}
+
 .ibs-full-modal{
   position: absolute;
   top:0;
@@ -32,11 +38,7 @@ $modal-backdrop-background:rgba(0,0,0,0.5);
   transform: translateX(30%);
   opacity:0;
   
-  *{
-    box-sizing: border-box;
-    margin:0;
-    padding:0;
-  }
+  
   
   &>.ibs-modal-header{
     padding:$modal-padding/4*3 $modal-padding;
