@@ -7,8 +7,20 @@
   let backdrop;
   
   const ACTIVATED_ZINDEX=102;
+  
   const DEACTIVATED_ZINDEX=101;
   
+  const Events={
+    BEFORE_OPEN:'BEFORE_OPEN',
+    BEFORE_CLOSE:'BEFORE_CLOSE',
+    AFTER_OPEN:'AFTER_OPEN',
+    AFTER_CLOSE:'AFTER_CLOSE',    
+  };
+
+  let parentWindow=global.parent||global;
+
+  const ORIGIN=location.origin.indexOf('http')>-1?location.origin:'*';
+
   class Backdrop {
     constructor(container, duration) {
       if (backdrop instanceof Backdrop) return backdrop;
@@ -57,6 +69,7 @@
       this.$el = el;
       this.option = option;
       this.$modalEl = this.$el.find('.ibs-full-modal');
+      this.$modalBody=this.$el.find('.ibs-modal-body');
       this.isOpen = false;
       this.isActivated=false;
       this.backdrop = backdrop = new Backdrop('body', option.duration + 200);
@@ -78,6 +91,8 @@
     open() {
       this.option.beforeOpen.call(this);
       
+      parentWindow.postMessage(Events.BEFORE_OPEN,ORIGIN)
+
       this.activate();
       
       this.backdrop.open();
@@ -87,22 +102,38 @@
       this.$modalEl.animate({
         background: '#fff'
       },this.option.duration,()=>{
+
         $('body').addClass('full-modal-open');
-        this.option.afterOpen.call(this)
+
+        this.option.afterOpen.call(this);
+
+        parentWindow.postMessage(Events.AFTER_OPEN,ORIGIN);
+
       }).css(autoprefixer('transform', 'translateX(0)'))
         .css({opacity:1});
       
       this.isOpen = true;
     }
-    
+    scrollTop(top=0){
+      this.$modalBody.scrollTop(top);
+    }
     close() {
       this.option.beforeClose.call(this);
+      
+      parentWindow.postMessage(Events.BEFORE_CLOSE,ORIGIN);
+
       this.backdrop.close();
+
       this.$modalEl.animate({
         background: 'transparent'
       },this.option.duration,()=>{
+
         $('body').removeClass('full-modal-open');
+
         this.option.afterClose.call(this);
+        
+        parentWindow.postMessage(Events.AFTER_CLOSE,ORIGIN);
+
         this.$el.hide();
         this.deactivate();
       })
@@ -150,7 +181,7 @@
     return cssRules;
   }
   
-  const ALLOW_USER_INVOKES = ['open', 'close'];
+  const ALLOW_USER_INVOKES = ['open', 'close','scrollTop'];
   const defaults = {
     duration: 300,
     trigger: '',
@@ -161,7 +192,7 @@
     afterClose: $.noop
   };
   
-  $.fn.fullModal = function (options) {
+  $.fn.fullModal = function (options,...args) {
     
     return this.each(function () {
       let $this = $(this);
@@ -174,10 +205,10 @@
         if (modal) {
           
           if (ALLOW_USER_INVOKES.indexOf(method) < 0) {
-            return console.error(`method:"${method}" is not allowed invoke on modal instance,expected method are ["open","close"]`);
+            return console.error(`method:"${method}" is not allowed invoke on modal instance,expected method are [${ALLOW_USER_INVOKES.toString()}]`);
           }
           
-          return modal[method]();
+          return modal[method].apply(modal,args);
         } else {
           return console.error('please initialize modal first');
         }
@@ -200,4 +231,8 @@
       }
     });
   };
+
+  $.fn.fullModal.Events=Events;
+
+  $.fn.fullModal.Defaults=defaults;
 })(window, jQuery);

@@ -53,6 +53,28 @@
       }
     });
 ```
+
+**为了适用在Iframe中的应用，在每个勾子执行的同时，会向父窗口发送消息，父窗口在接收到消息后，可作相应的处理**
+
+```js
+  window.addEventListener('message',function(e){
+    if(e.origin==='xxx'){
+      if(e.data===$.fn.fullModal.Events.BEFORE_OPEN){
+        //do something
+      }
+    }
+  });
+```
+共有四种消息,如下：
+```ts
+  interface Events{
+    BEFORE_OPEN:string;
+    BEFORE_CLOSE:string;
+    AFTER_OPEN:string;
+    AFTER_CLOSE:string;
+  }
+```
+
 **打开对话框**
 
 ```js
@@ -63,7 +85,27 @@
 ```js
   $('#modal1').fullModal('close');
 ```
+
+**滚动内容到指定高度**
+
+```js
+//不传top，默认为0
+  $('#modal1').fullModal('scrollTop',top?:number);
+```
+
 ## API说明
+
+```ts
+  interface FullModalOption{
+    closeWhenClickBackdrop?:boolean;
+    trigger?:string;
+    duration?:number;
+    beforeOpen?:Function;
+    afterOpen?:Function;
+    beforeClose?:Function;
+    afterClose?:Function;
+  }
+```
 
 1. `closeWhenClickBackdrop`:`boolean`，点击遮罩层时，是否关闭对话框,默认：`true`,optional.
 2. `trigger`: `string`,按钮的选择器，点击此按钮会打开对话框,如`#my-button`,optional.
