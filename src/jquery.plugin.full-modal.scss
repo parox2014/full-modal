@@ -75,9 +75,17 @@ $modal-backdrop-background:rgba(0,0,0,0.5);
     top:auto;
     bottom:0;
     height: $modal-footer-height;
-    text-align: right;
+    text-align: left;
     border-top: 1px solid $modal-divider-color;
     padding:$modal-padding/2 $modal-padding;
+
+    button{
+      min-width: 120px;
+      margin-right: 20px;
+      &:last-child{
+        margin-right: 0;
+      }
+    }
   }
   
   .ibs-modal-title{

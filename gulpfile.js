@@ -47,7 +47,7 @@ gulp.task('es62es5',function () {
     .pipe(gulp.dest('./dist'))
 });
 
-gulp.task('build',['es62es5','style']);
+gulp.task('default',['es62es5','style']);
 
 gulp.task('watch',function () {
   gulp.watch(paths.sass,['style']);
