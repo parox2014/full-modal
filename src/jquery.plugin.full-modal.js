@@ -80,7 +80,7 @@
     initialize() {
 
       if (this.option.closeWhenClickBackdrop) {
-        this.$el.on('click', () => this.close());
+        this.$el.on('click', () => this.onCloseButtonClick());
       }
 
       this.$modalEl.on('click', e => e.stopPropagation())
