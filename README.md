@@ -45,8 +45,9 @@
       afterOpen: function () {
         console.log('afterOpen was invoked');
       },
-      beforeClose: function () {
-        console.log('beforeClose was invoked');
+      beforeClose: function (callback) {
+        //do something async
+        $.post('/url').done(callback);
       },
       afterClose: function () {
         console.log('afterClose was invoke');
@@ -112,5 +113,5 @@
 2. `duration`:`number`,动画持续时间,默认:`300`,optional.
 3. `beforeOpen`:`Function`,对话框打开之前调用,optional.
 4. `afterOpen`:`Function`,对话框架打之后调用,optional.
-5. `beforeClose`:`Function`,对话框关闭之前调用,optional.
+5. `beforeClose`:`Function`,对话框关闭之前调用,接受一个参数callback,如果调用了callback,则关闭弹窗，如果不调用，则什么也不做。optional.
 6. `afterClose` :`Function`,对话框关闭之后调用,optional.

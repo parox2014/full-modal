@@ -19,6 +19,7 @@
         <span class="ibs-btn-close">&times;</span>
       </header>
       <div class="ibs-modal-body has-header has-footer">
+        <button id="closeBtn">close</button>
         <div class="item-wrap" style="font-size: 18px;line-height: 2em">
           <div class="article" id="article">
             <div class="article-title">
@@ -69,14 +70,17 @@
       $('.ibs-full-modal-container').fullModal({
         closeWhenClickBackdrop: true,
         duration: 500,
-        beforeOpen: function () {
-          console.log('beforeOpen was invoked');
+        beforeOpen: function (callback) {
+          callback();
         },
         afterOpen: function () {
           console.log('afterOpen was invoked');
         },
-        beforeClose: function () {
-          console.log('beforeClose was invoked');
+        beforeClose: function (callback) {
+          setTimeout(function(){
+            callback();
+          },2000);
+        
         },
         afterClose: function () {
           console.log('afterClose was invoke');
@@ -85,18 +89,12 @@
 
       $('#openBtn').on('click', function () {
         $('#modal1').fullModal('open');
-        setTimeout(function(){
-          $('#modal1').fullModal('scrollTop',20);
-        },1000);
       });
+      
       $('#closeBtn').on('click', function () {
         $('#modal1').fullModal('close');
       });
 
-      $('#modal2Btn').on('click', function () {
-        $('#modal2').fullModal('open');
-      });
-      
       window.addEventListener('message',function(e){
         console.log(e);
       });
