@@ -15,11 +15,11 @@
   <div id="modal1" class="ibs-full-modal-container">
     <div class="ibs-full-modal">
       <header class="ibs-modal-header">
-        <h4 class="ibs-modal-title">内容编辑</h4>
+        <h4 class="ibs-modal-title">Modal1</h4>
         <span class="ibs-btn-close">&times;</span>
       </header>
       <div class="ibs-modal-body has-header has-footer">
-        <button id="closeBtn">close</button>
+        <button id="openBtn2">open Modal2</button>
         <div class="item-wrap" style="font-size: 18px;line-height: 2em">
           <div class="article" id="article">
             <div class="article-title">
@@ -63,11 +63,26 @@
       </div>
     </div>
   </div>
+
+  <div id="modal2" class="ibs-full-modal-container">
+    <div class="ibs-full-modal">
+      <header class="ibs-modal-header">
+        <h4 class="ibs-modal-title">Modal2</h4>
+        <span class="ibs-btn-close">&times;</span>
+      </header>
+      <div class="ibs-modal-body has-header has-footer">
+      </div>
+      <div class="ibs-modal-footer">
+        <button class="btn btn-default" id="">取消</button>
+        <button class="btn btn-success">确定</button>
+      </div>
+    </div>
+  </div>
   <script src="./node_modules/jquery/dist/jquery.min.js"></script>
   <script src="./dist/jquery.plugin.full-modal.min.js"></script>
   <script>
     window.addEventListener('load', function () {
-      $('.ibs-full-modal-container').fullModal({
+      $('#modal1').fullModal({
         closeWhenClickBackdrop: true,
         duration: 500,
         beforeOpen: function (callback) {
@@ -77,6 +92,7 @@
           console.log('afterOpen was invoked');
         },
         beforeClose: function (callback) {
+          console.log('modal one closed')
           setTimeout(function(){
             callback();
           },2000);
@@ -87,13 +103,33 @@
         }
       });
 
+      $('#modal2').fullModal({
+        closeWhenClickBackdrop: true,
+        duration: 500,
+        beforeOpen: function (callback) {
+          callback();
+        },
+        afterOpen: function () {
+          console.log('afterOpen was invoked');
+        },
+        beforeClose: function (callback) {
+          console.log('modal two closed')
+          callback();
+        },
+        afterClose: function () {
+          console.log('afterClose was invoke');
+        }
+      });
+
       $('#openBtn').on('click', function () {
         $('#modal1').fullModal('open');
       });
       
-      $('#closeBtn').on('click', function () {
-        $('#modal1').fullModal('close');
+      $('#openBtn2').on('click', function () {
+        $('#modal2').fullModal('open');
       });
+
+
 
       window.addEventListener('message',function(e){
         console.log(e);

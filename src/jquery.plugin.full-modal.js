@@ -234,7 +234,7 @@
         }
       }
 
-      let option = $.extend(defaults, options);
+      let option = $.extend({},defaults, options);
 
       let id = uniqueId();
       let modal = new FullModal($this, option);
