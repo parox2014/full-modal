@@ -3,9 +3,9 @@
 
   const fullModalMapper = new Map();
   const modals = [];
-
+  global.__UID__=0;
   let backdrop;
-
+  
   const ACTIVATED_ZINDEX = 102;
 
   const DEACTIVATED_ZINDEX = 101;
@@ -73,6 +73,7 @@
       this.$modalBody = this.$el.find('.ibs-modal-body');
       this.isOpen = false;
       this.isActivated = false;
+      this.isClosing=false;
       this.backdrop = backdrop = new Backdrop('body', option.duration + 200);
       this.initialize();
     }
@@ -125,9 +126,12 @@
       this.$modalBody.scrollTop(top);
     }
     onCloseButtonClick() {
+      if(this.isClosing)return;
+      this.isClosing=true;
       this.option.beforeClose.call(this, this.close.bind(this));
     }
     close() {
+      this.isClosing=false;
       parentWindow.postMessage(Events.BEFORE_CLOSE, ORIGIN);
 
       this.backdrop.close();
@@ -179,8 +183,8 @@
   }
 
 
-  function uniqueId(prefix = 'full-modal-') {
-    return `${prefix}${Date.now()}`;
+  function uniqueId(prefix = 'fm_') {
+    return `${prefix}${++global.__UID__}`;
   }
 
   function isString(str) {
@@ -218,10 +222,10 @@
       let $this = $(this);
 
       if (isString(options)) {
-
-        let modal = fullModalMapper.get($this.data('uniqueId'));
+        let uid=$this.data('uniqueId');
+        let modal = fullModalMapper.get(uid);
         let method = options;
-
+        // console.log('uid:',uid);
         if (modal) {
 
           if (ALLOW_USER_INVOKES.indexOf(method) < 0) {
@@ -238,7 +242,7 @@
 
       let id = uniqueId();
       let modal = new FullModal($this, option);
-
+      // console.log(id);
       $this.data('uniqueId', id);
 
       fullModalMapper.set(id, modal);

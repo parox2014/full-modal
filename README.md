@@ -41,7 +41,7 @@
 
 ### JS
 
-  <strong style="color:red;">记住：如果传入了`beforeOpen`或是`beforeClose`，则必须调用callback才会继续后面的动作</strong>
+  *记住：如果传入了`beforeOpen`或是`beforeClose`，则必须调用callback才会继续后面的动作*
 
 ```js
    $('.ibs-full-modal-container').fullModal({
