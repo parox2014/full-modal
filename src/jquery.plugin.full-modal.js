@@ -23,7 +23,7 @@
 
   let parentWindow = global.parent || global;
 
-  const ORIGIN = location.origin.indexOf('http') > -1 ? location.origin : '*';
+  const ORIGIN ='*';
 
   modals.hasOpenedModal=function(){
 
