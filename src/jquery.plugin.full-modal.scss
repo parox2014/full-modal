@@ -12,6 +12,26 @@ $modal-backdrop-background:rgba(0,0,0,0.5);
   top:0;
 }
 
+*{
+  box-sizing: border-box;
+  margin:0;
+  padding:0;
+}
+
+html{
+  height: 100%;
+}
+
+body{
+  min-height: 100%;
+  transform: translate3d(0,0,0);
+}
+
+body.full-modal-open{
+  height: 100%;
+  overflow: hidden;
+}
+
 .ibs-backdrop{
   position: fixed;
   top:0;
@@ -27,12 +47,6 @@ $modal-backdrop-background:rgba(0,0,0,0.5);
 .ibs-full-modal-container{
   @extend .ibs-backdrop;
   background-color: transparent;
-
-  *{
-    box-sizing: border-box;
-    margin:0;
-    padding:0;
-  }
 }
 
 
@@ -55,9 +69,6 @@ $modal-backdrop-background:rgba(0,0,0,0.5);
     height: $modal-header-height;
     background-color: $modal-header-background;
     border-bottom: 1px solid $modal-divider-color;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
   }
   
   
@@ -101,36 +112,23 @@ $modal-backdrop-background:rgba(0,0,0,0.5);
     font-size: 18px;
     font-weight: bold;
     float: left;
+    margin:0;
   }
+  $close-btn-size:28px;
   .ibs-btn-close{
-    font-size:30px;
+    font-size:$close-btn-size;
     float:right;
-    line-height: 30px;
+    line-height: $close-btn-size;
     text-align: center;
-    height: 30px;
-    width: 30px;
+    height:$close-btn-size;
+    width: $close-btn-size;
     border-radius: 50%;
     transition: all 0.3s;
     &:hover{
       background-color: cornflowerblue;
       color:#fff;
       cursor: pointer;
-      transform: rotate(180deg);
+      transform: rotate(90deg);
     }
   }
-}
-
-
-html{
-  height: 100%;
-}
-
-body{
-  min-height: 100%;
-  transform: translate3d(0,0,0);
-}
-
-body.full-modal-open{
-  height: 100%;
-  overflow: hidden;
 }
