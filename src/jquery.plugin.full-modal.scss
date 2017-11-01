@@ -6,13 +6,19 @@ $modal-header-background:#eee;
 $modal-divider-color:#ccc;
 $modal-backdrop-background:rgba(0,0,0,0.5);
 
+@mixin absolute(){
+  position: absolute;
+  left:0;
+  top:0;
+}
+
 .ibs-backdrop{
   position: fixed;
   top:0;
   left:0;
+  bottom: 0;
+  right: 0;
   width: 100%;
-  min-height: 768px;
-  height: 100%;
   background-color:$modal-backdrop-background;
   z-index: 100;
   display: none;
@@ -21,13 +27,15 @@ $modal-backdrop-background:rgba(0,0,0,0.5);
 .ibs-full-modal-container{
   @extend .ibs-backdrop;
   background-color: transparent;
+
+  *{
+    box-sizing: border-box;
+    margin:0;
+    padding:0;
+  }
 }
 
-*{
-  box-sizing: border-box;
-  margin:0;
-  padding:0;
-}
+
 
 .ibs-full-modal{
   position: absolute;
@@ -41,27 +49,26 @@ $modal-backdrop-background:rgba(0,0,0,0.5);
   
   
   &>.ibs-modal-header{
+    @include absolute();
     padding:$modal-padding/4*3 $modal-padding;
-    position: absolute;
-    top:0;
-    left:0;
     width: 100%;
     height: $modal-header-height;
     background-color: $modal-header-background;
     border-bottom: 1px solid $modal-divider-color;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
   
   
   &>.ibs-modal-body{
-    @extend .ibs-modal-header;
-    height: auto;
-    padding:$modal-padding;
+    @include absolute();
     right:0;
     bottom:0;
+    padding:$modal-padding;
     background-color: #fff;
     overflow-x: hidden;
     overflow-y: auto;
-    border:none;
     &.has-header{
       top:$modal-header-height;
     }
@@ -71,14 +78,15 @@ $modal-backdrop-background:rgba(0,0,0,0.5);
   }
   
   &>.ibs-modal-footer{
-    @extend .ibs-modal-header;
+    @include absolute();
     top:auto;
     bottom:0;
+    width: 100%;
     height: $modal-footer-height;
     text-align: left;
     border-top: 1px solid $modal-divider-color;
     padding:$modal-padding/2 $modal-padding;
-
+    background-color: $modal-header-background;
     button{
       min-width: 120px;
       margin-right: 20px;
@@ -123,5 +131,6 @@ body{
 }
 
 body.full-modal-open{
+  height: 100%;
   overflow: hidden;
 }
