@@ -121,6 +121,7 @@
     closeWhenClickBackdrop?:boolean;
     trigger?:string;
     duration?:number;
+    origin?:string;
     beforeOpen?:Function;
     afterOpen?:Function;
     beforeClose?:Function;
@@ -131,6 +132,7 @@
 1. `closeWhenClickBackdrop`:`boolean`，点击遮罩层时，是否关闭对话框,默认：`true`,optional.
 1. `trigger`: `string`,按钮的选择器，点击此按钮会打开对话框,如`#my-button`,optional.
 1. `duration`:`number`,动画持续时间,默认:`300`,optional.
+1. `origin`:`string`,postMessage需要的origin参数,默认:`*`,optional.
 1. `beforeOpen`:`Function`,对话框打开之前调用,接受一个参数callback,如果调用了callback,则打开弹窗，如果不调用，则什么也不做.optional.
 1. `afterOpen`:`Function`,对话框架打之后调用,optional.
 1. `beforeClose`:`Function`,对话框关闭之前调用,接受一个参数callback,如果调用了callback,则关闭弹窗，如果不调用，则什么也不做。optional.
