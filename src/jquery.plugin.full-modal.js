@@ -123,7 +123,7 @@
         this.openedModals.push(target);
 
         if (this.openedModals.length === 1) {
-          $('body').addClass('full-modal-open');
+          $('html').addClass('full-modal-open');
         }
       });
 
@@ -131,7 +131,7 @@
         this.openedModals.pop();
         this.deactivateModal(target);
         if (!this.hasOpenedModal()) {
-          $('body').removeClass('full-modal-open');
+          $('html').removeClass('full-modal-open');
           Backdrop.singleton.close();
         }
       });

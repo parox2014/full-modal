@@ -20,14 +20,12 @@ $modal-backdrop-background:rgba(0,0,0,0.5);
 
 html{
   height: 100%;
+  overflow-y: auto;
+  transform: translate3d(0);
 }
 
-body{
-  min-height: 100%;
-  transform: translate3d(0,0,0);
-}
 
-body.full-modal-open{
+.full-modal-open{
   height: 100%;
   overflow: hidden;
 }
@@ -52,13 +50,14 @@ body.full-modal-open{
 
 
 .ibs-full-modal{
-  position: absolute;
+  position: fixed;
   top:0;
   left:240px;
   right:0;
   bottom:0;
   transform: translateX(30%);
   opacity:0;
+  height: 100%;
   
   
   
